@@ -1726,7 +1726,7 @@ async def view_item_details(callback: CallbackQuery):
                 )
         except Exception as e:
             logger.error(f"Error sending photo: {e}")
-            await callback.message.reply_text(essage.answer(result_text, parse_mode=ParseMode.MARKDOWN)
+            await callback.message.reply_text(result_text, parse_mode=ParseMode.MARKDOWN)
     else:
         await callback.message.reply_text(result_text, parse_mode=ParseMode.MARKDOWN)
     
