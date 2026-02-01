@@ -482,4 +482,54 @@ class TruecallerBot:
                 result.append(f"  • Jih: {address.get('address', 'Unknown')}")
                 result.append(f"  • Kolan: {address.get('street', 'Unknown')}")
                 result.append(f"  • Zipcode: {address.get('zipCode', 'Unknown')}")
-                result.append(f"  • Bajer: {address.get('city'
+                result.append(f"  • Bajer: {address.get('city', 'Unknown')}")
+                result.append(f"  • Dame Davare: {address.get('timeZone', 'Unknown')}")
+        
+        # Internet Addresses
+        internet = data.get('internetAddresses', [])
+        if internet:
+            result.append("\n🌐 Nav o nishanen Internete:")
+            for addr in internet:
+                service = addr.get('service', 'Unknown')
+                if service == 'email':
+                    result.append(f"  • Email: {addr.get('id', 'Unknown')}")
+                elif service == 'link':
+                    result.append(f"  • Link: {addr.get('id', 'Unknown')}")
+                    
+        # Replace the existing searchWarnings code with this:
+        srchwarn = data.get('searchWarnings', [])
+        if srchwarn:
+            result.append("\n⚠️ Hshyarbon li ligariane:")
+            for warning in srchwarn:
+                rule_name = warning.get('ruleName', 'Unknown')
+                result.append(f"  • {rule_name}")
+                    
+        # Badges
+        badges = data.get('badges', [])
+        if badges:
+            result.append("\n🏅 Nishan:")
+            for badge in badges:
+                result.append(f"  • {badge.capitalize()}")
+        
+        # Tags
+        tags = data.get('tags', [])
+        if tags:
+            result.append("\n🏷️ Tags:")
+            for tag in tags:
+                result.append(f"  • {tag}")
+        
+        return "\n".join(result)
+
+# Initialize bot
+bot = TruecallerBot()
+
+# Register handlers
+application.add_handler(CommandHandler("start", bot.start_command))
+application.add_handler(CommandHandler("logout", bot.logout_command))
+application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, bot.handle_message))
+
+# Run bot
+if __name__ == '__main__':
+    logger.info("Starting bot...")
+    application.run_polling()
+                
