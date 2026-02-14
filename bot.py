@@ -27,7 +27,7 @@ from telegram.ext import (
 )
 from telegram.constants import ParseMode
 
-BOT_TOKEN = ""
+BOT_TOKEN = "8251499938:AAGZ5Vf5obSaaw2PXgRx80wZmXHm0NpBBqU"
 ADMIN_ID = 6290314134
 BOT_USERNAME = "@FEMBOYSecULPbot"
 PREMIUM_CONTACT = "@kurdfemboys"
